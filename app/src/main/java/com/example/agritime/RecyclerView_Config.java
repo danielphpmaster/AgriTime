@@ -38,7 +38,7 @@ public class RecyclerView_Config {
 
         public void bind(Entry entry, String key) {
             mName.setText(entry.getName());
-            mCategory.setText(entry.getCategory());
+            mCategory.setText(Integer.toString(entry.getCategory()));
             mTime.setText(entry.getTime());
             this.key = key;
         }

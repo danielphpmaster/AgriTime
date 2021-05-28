@@ -25,7 +25,7 @@ public class FirebaseDatabaseHelper {
 
     public FirebaseDatabaseHelper() {
         mDatabase = FirebaseDatabase.getInstance();
-        mReferenceBooks = mDatabase.getReference("books");
+        mReferenceBooks = mDatabase.getReference("entry");
     }
 
     public void readEntries(final DataStatus dataStatus) {
