@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="entry_array">
+        <item>Administrator</item>
+        <item>Fruit Growing</item>
+        <item>Livestock</item>
+
+    </string-array>
+</resources>

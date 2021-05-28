@@ -2,6 +2,7 @@ package com.example.agritime;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class FirebaseDatabaseHelper {
     private FirebaseDatabase mDatabase;
-    private DatabaseReference mReferenceBooks;
+    private DatabaseReference mReferenceEntry;
     private List<Entry> entries = new ArrayList<>();
 
     public interface DataStatus{
@@ -25,11 +26,11 @@ public class FirebaseDatabaseHelper {
 
     public FirebaseDatabaseHelper() {
         mDatabase = FirebaseDatabase.getInstance();
-        mReferenceBooks = mDatabase.getReference("entry");
+        mReferenceEntry = mDatabase.getReference("entry");
     }
 
     public void readEntries(final DataStatus dataStatus) {
-        mReferenceBooks.addValueEventListener(new ValueEventListener() {
+        mReferenceEntry.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 entries.clear();
@@ -47,5 +48,16 @@ public class FirebaseDatabaseHelper {
 
             }
         });
+    }
+
+    public void addEntry (Entry entry, final DataStatus dadaStatus){
+        String key =mReferenceEntry.push().getKey();
+        mReferenceEntry.child(key).setValue(entry)
+               .addOnSuccessListener(new OnSuccessListener<Void>() {
+                   @Override
+                   public void onSuccess(Void aVoid) {
+                       dadaStatus.DataIsInserted();
+                   }
+               });
     }
 }
