@@ -55,7 +55,7 @@ public class EntryDetailsActivity extends AppCompatActivity {
                 entry.setCategory(mEntry_categories_spinner.getSelectedItem().toString());
                 entry.setTime(mtime_editText.getText().toString());
 
-                new FirebaseDatabaseHelper().updateEntry(key, entry, new FirebaseDatabaseHelper.DataStatus() {
+                new EntryFirebaseDatabaseHelper().updateEntry(key, entry, new EntryFirebaseDatabaseHelper.DataStatus() {
                     @Override
                     public void DataIsLoaded(List<Entry> entries, List<String> keys) {
 
@@ -82,7 +82,7 @@ public class EntryDetailsActivity extends AppCompatActivity {
         mDelete_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new FirebaseDatabaseHelper().deleteEntry(key, new FirebaseDatabaseHelper.DataStatus() {
+                new EntryFirebaseDatabaseHelper().deleteEntry(key, new EntryFirebaseDatabaseHelper.DataStatus() {
                     @Override
                     public void DataIsLoaded(List<Entry> entries, List<String> keys) {
 

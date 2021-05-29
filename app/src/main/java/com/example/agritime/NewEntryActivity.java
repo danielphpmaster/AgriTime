@@ -37,7 +37,7 @@ public class NewEntryActivity extends AppCompatActivity {
                 entry.setName(mName_editText.getText().toString());
                 entry.setTime(mTime_editText.getText().toString());
                 entry.setCategory(mEntry_catgories_spinner.getSelectedItem().toString());
-                new FirebaseDatabaseHelper().addEntry(entry, new FirebaseDatabaseHelper.DataStatus() {
+                new EntryFirebaseDatabaseHelper().addEntry(entry, new EntryFirebaseDatabaseHelper.DataStatus() {
                     @Override
                     public void DataIsLoaded(List<Entry> entries, List<String> keys) {
 

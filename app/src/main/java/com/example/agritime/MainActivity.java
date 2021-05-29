@@ -6,15 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -27,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_entries);
-        new FirebaseDatabaseHelper().readEntries(new FirebaseDatabaseHelper.DataStatus() {
+        new EntryFirebaseDatabaseHelper().readEntries(new EntryFirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Entry> entries, List<String> keys) {
                 new RecyclerView_Config().setConfig(mRecyclerView, MainActivity.this, entries, keys);

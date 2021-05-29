@@ -12,7 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirebaseDatabaseHelper {
+public class EntryFirebaseDatabaseHelper {
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReferenceEntry;
     private List<Entry> entries = new ArrayList<>();
@@ -24,7 +24,7 @@ public class FirebaseDatabaseHelper {
         void DataIsDeleted();
     }
 
-    public FirebaseDatabaseHelper() {
+    public EntryFirebaseDatabaseHelper() {
         mDatabase = FirebaseDatabase.getInstance();
         mReferenceEntry = mDatabase.getReference("entry");
     }
