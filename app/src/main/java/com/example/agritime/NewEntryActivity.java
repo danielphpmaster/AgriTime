@@ -1,5 +1,6 @@
 package com.example.agritime;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +29,10 @@ public class NewEntryActivity extends AppCompatActivity {
     private Button mNewCategory_button;
     private Button mUpload_button;
     private Button mBack_button;
+
+    public interface Callback {
+        void onCallback(String[] array);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +47,13 @@ public class NewEntryActivity extends AppCompatActivity {
         mUpload_button = (Button) findViewById(R.id.update_button);
         mBack_button = (Button) findViewById(R.id.back_button2);
 
-        // fill spinner
-        List<String> spinnerArray =  new ArrayList<String>();
+        /*
         new CategoryFirebaseDatabaseHelper().readCategories(new CategoryFirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Category> categories, List<String> keys) {
-                for(int i = 0; i < categories.size(); i++) {
-                    spinnerArray.add(categories.get(i).getName());
+                List<String> spinnerList = new ArrayList<>();
+                for (int i = 0; i < categories.size(); i++) {
+                    spinnerList.add(categories.get(i).getName());
                 }
             }
 
@@ -62,20 +72,21 @@ public class NewEntryActivity extends AppCompatActivity {
 
             }
         });
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerArray);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mEntry_categories_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mEntry_categories_spinner.setSelection((int) id);
-                System.out.println("Tesssst");
-            }
+        System.out.println(spinnerList.size());
 
+
+        String colors[] = {"Red","Blue","White","Yellow","Black", "Green","Purple","Orange","Grey"};
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, colors);
+        mEntry_categories_spinner.setAdapter(spinnerArrayAdapter);
+        */
+
+        readCategories(new Callback() {
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onCallback(String[] array) {
+                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(NewEntryActivity.this, android.R.layout.simple_spinner_dropdown_item, array);
+                mEntry_categories_spinner.setAdapter(spinnerArrayAdapter);
             }
         });
-        mEntry_categories_spinner.setAdapter(adapter);
 
         mUpload_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +133,35 @@ public class NewEntryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openNewCategoryActivity();
+            }
+        });
+    }
+
+    // source: https://stackoverflow.com/questions/14773264/convert-listobject-to-string-in-java
+    public void readCategories(Callback callback) {
+        FirebaseDatabase.getInstance().getReference("category").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<String> categories = new ArrayList<>();
+                List<String> keys = new ArrayList<>();
+                for (DataSnapshot keyNode : dataSnapshot.getChildren()) {
+                    keys.add(keyNode.getKey());
+                    Category category = keyNode.getValue(Category.class);
+                    categories.add(category.getName());
+                }
+
+                String[] array = new String[categories.size()];
+                int index = 0;
+                for (Object value : categories) {
+                    array[index] = (String) value;
+                    index++;
+                }
+
+                callback.onCallback(array);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
             }
         });
     }
