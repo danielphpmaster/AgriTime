@@ -30,7 +30,7 @@ public class NewEntryActivity extends AppCompatActivity {
         mTime_editText = (EditText) findViewById(R.id.hours_editText);
         mEntry_catgories_spinner = (Spinner) findViewById(R.id.category_editText);
 
-        mNewCategory_button = (Button) findViewById(R.id.add_category_button);
+        mNewCategory_button = (Button) findViewById(R.id.new_category);
         mUpload_button = (Button) findViewById(R.id.update_button);
         mBack_button = (Button) findViewById(R.id.back_button2);
 
@@ -63,20 +63,21 @@ public class NewEntryActivity extends AppCompatActivity {
                     }
                 });
 
-                mBack_button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        finish();
-                        return;
-                    }
-                });
+            }
+        });
 
-                mNewCategory_button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        openNewCategoryActivity();
-                    }
-                });
+        mBack_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                return;
+            }
+        });
+
+        mNewCategory_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNewCategoryActivity();
             }
         });
     }

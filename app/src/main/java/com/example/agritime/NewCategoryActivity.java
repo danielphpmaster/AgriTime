@@ -3,6 +3,7 @@ package com.example.agritime;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -21,5 +22,13 @@ public class NewCategoryActivity extends AppCompatActivity {
 
         mAdd_button = (Button) findViewById(R.id.add_category_button);
         mBack_button = (Button) findViewById(R.id.back_button_category);
+
+        mBack_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                return;
+            }
+        });
     }
 }
