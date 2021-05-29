@@ -1,12 +1,8 @@
 package com.example.agritime;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +17,7 @@ public class NewEntryActivity extends AppCompatActivity {
     private EditText mTime_editText;
     private Spinner mEntry_catgories_spinner;
     private Button mUpload_button;
-    private Button mQuit_button;
+    private Button mBack_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +27,8 @@ public class NewEntryActivity extends AppCompatActivity {
         mTime_editText = (EditText) findViewById(R.id.hours_editText);
         mEntry_catgories_spinner = (Spinner) findViewById(R.id.category_editText);
 
-        mUpload_button = (Button)findViewById(R.id.upload_button);
-        mQuit_button = (Button) findViewById(R.id.quit_button);
+        mUpload_button = (Button)findViewById(R.id.update_button);
+        mBack_button = (Button) findViewById(R.id.back_button);
 
         mUpload_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +59,7 @@ public class NewEntryActivity extends AppCompatActivity {
 
                     }
                 });
-                mQuit_button.setOnClickListener(new View.OnClickListener() {
+                mBack_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         finish(); return;

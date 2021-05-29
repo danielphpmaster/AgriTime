@@ -1,7 +1,9 @@
 package com.example.agritime;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -34,6 +36,20 @@ public class RecyclerView_Config {
             mName = (TextView) itemView.findViewById(R.id.tvName);
             mCategory = (TextView) itemView.findViewById(R.id.tvCategory);
             mTime = (TextView) itemView.findViewById(R.id.tvTime);
+
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    Intent intent = new Intent(mContext, EntryDetailsActivity.class);
+                    intent.putExtra("key",key);
+                    intent.putExtra("name",mName.getText().toString());
+                    intent.putExtra("category",mCategory.getText().toString());
+                    intent.putExtra("time",mTime.getText().toString());
+
+                    mContext.startActivity(intent);
+                }
+            });
         }
 
         public void bind(Entry entry, String key) {

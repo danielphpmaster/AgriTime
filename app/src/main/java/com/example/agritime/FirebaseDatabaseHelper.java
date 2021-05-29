@@ -60,4 +60,24 @@ public class FirebaseDatabaseHelper {
                    }
                });
     }
+
+    public void updateEntry( String key, Entry entry, final DataStatus dataStatus){
+        mReferenceEntry.child(key).setValue(entry)
+        .addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                 dataStatus.DataIsUpdated();
+            }
+        });
+    }
+
+    public void deleteEntry(String key, final DataStatus dataStatus){
+            mReferenceEntry.child(key).setValue(null)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            dataStatus.DataIsDeleted();
+                        }
+                    });
+    }
 }
