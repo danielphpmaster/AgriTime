@@ -38,7 +38,7 @@ public class CategoryFirebaseDatabaseHelper {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 categories.clear();
                 List<String> keys = new ArrayList<>();
-                for(DataSnapshot keyNode : dataSnapshot.getChildren()) {
+                for (DataSnapshot keyNode : dataSnapshot.getChildren()) {
                     keys.add(keyNode.getKey());
                     Category category = keyNode.getValue(Category.class);
                     categories.add(category);

@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NewEntryActivity extends AppCompatActivity {
@@ -33,6 +35,35 @@ public class NewEntryActivity extends AppCompatActivity {
         mNewCategory_button = (Button) findViewById(R.id.new_category);
         mUpload_button = (Button) findViewById(R.id.update_button);
         mBack_button = (Button) findViewById(R.id.back_button2);
+
+        // fill spinner
+        List<String> spinnerArray =  new ArrayList<String>();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerArray);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mEntry_catgories_spinner.setAdapter(adapter);
+        new CategoryFirebaseDatabaseHelper().readCategories(new CategoryFirebaseDatabaseHelper.DataStatus() {
+            @Override
+            public void DataIsLoaded(List<Category> categories, List<String> keys) {
+                for(int i = 0; i < categories.size(); i++) {
+                    spinnerArray.add(categories.get(i).getName());
+                }
+            }
+
+            @Override
+            public void DataIsInserted() {
+
+            }
+
+            @Override
+            public void DataIsUpdated() {
+
+            }
+
+            @Override
+            public void DataIsDeleted() {
+
+            }
+        });
 
         mUpload_button.setOnClickListener(new View.OnClickListener() {
             @Override
