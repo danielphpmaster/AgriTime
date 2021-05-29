@@ -2,6 +2,7 @@ package com.example.agritime;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ public class NewEntryActivity extends AppCompatActivity {
     private EditText mName_editText;
     private EditText mTime_editText;
     private Spinner mEntry_catgories_spinner;
+    private Button mNewCategory_button;
     private Button mUpload_button;
     private Button mBack_button;
 
@@ -28,6 +30,7 @@ public class NewEntryActivity extends AppCompatActivity {
         mTime_editText = (EditText) findViewById(R.id.hours_editText);
         mEntry_catgories_spinner = (Spinner) findViewById(R.id.category_editText);
 
+        mNewCategory_button = (Button) findViewById(R.id.add_category_button);
         mUpload_button = (Button) findViewById(R.id.update_button);
         mBack_button = (Button) findViewById(R.id.back_button2);
 
@@ -67,11 +70,21 @@ public class NewEntryActivity extends AppCompatActivity {
                         return;
                     }
                 });
-
             }
         });
 
+        mNewCategory_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNewCategoryActivity();
+            }
+        });
+
+
     }
 
-
+    public void openNewCategoryActivity() {
+        Intent intent = new Intent(this, NewCategoryActivity.class);
+        startActivity(intent);
+    }
 }
