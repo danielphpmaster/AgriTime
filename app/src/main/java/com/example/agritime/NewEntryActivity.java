@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +19,7 @@ public class NewEntryActivity extends AppCompatActivity {
 
     private EditText mName_editText;
     private EditText mTime_editText;
-    private Spinner mEntry_catgories_spinner;
+    private Spinner mEntry_categories_spinner;
     private Button mNewCategory_button;
     private Button mUpload_button;
     private Button mBack_button;
@@ -30,7 +31,7 @@ public class NewEntryActivity extends AppCompatActivity {
 
         mName_editText = (EditText) findViewById(R.id.name_editText);
         mTime_editText = (EditText) findViewById(R.id.hours_editText);
-        mEntry_catgories_spinner = (Spinner) findViewById(R.id.category_editText);
+        mEntry_categories_spinner = (Spinner) findViewById(R.id.category_editText);
 
         mNewCategory_button = (Button) findViewById(R.id.new_category);
         mUpload_button = (Button) findViewById(R.id.update_button);
@@ -38,9 +39,6 @@ public class NewEntryActivity extends AppCompatActivity {
 
         // fill spinner
         List<String> spinnerArray =  new ArrayList<String>();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerArray);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mEntry_catgories_spinner.setAdapter(adapter);
         new CategoryFirebaseDatabaseHelper().readCategories(new CategoryFirebaseDatabaseHelper.DataStatus() {
             @Override
             public void DataIsLoaded(List<Category> categories, List<String> keys) {
@@ -64,6 +62,20 @@ public class NewEntryActivity extends AppCompatActivity {
 
             }
         });
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerArray);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mEntry_categories_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mEntry_categories_spinner.setSelection((int) id);
+                System.out.println("Tesssst");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        mEntry_categories_spinner.setAdapter(adapter);
 
         mUpload_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +83,7 @@ public class NewEntryActivity extends AppCompatActivity {
                 Entry entry = new Entry();
                 entry.setName(mName_editText.getText().toString());
                 entry.setTime(mTime_editText.getText().toString());
-                entry.setCategory(mEntry_catgories_spinner.getSelectedItem().toString());
+                entry.setCategory(mEntry_categories_spinner.getSelectedItem().toString());
                 new EntryFirebaseDatabaseHelper().addEntry(entry, new EntryFirebaseDatabaseHelper.DataStatus() {
                     @Override
                     public void DataIsLoaded(List<Entry> entries, List<String> keys) {
