@@ -70,17 +70,15 @@ public class NewEntryActivity extends AppCompatActivity {
                         return;
                     }
                 });
+
+                mNewCategory_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        openNewCategoryActivity();
+                    }
+                });
             }
         });
-
-        mNewCategory_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openNewCategoryActivity();
-            }
-        });
-
-
     }
 
     public void openNewCategoryActivity() {
