@@ -50,6 +50,7 @@ public class NewEntryActivity extends AppCompatActivity {
                     @Override
                     public void DataIsInserted() {
                         Toast.makeText(NewEntryActivity.this, "Added successfully.", Toast.LENGTH_LONG).show();
+                        finish();
                     }
 
                     @Override
