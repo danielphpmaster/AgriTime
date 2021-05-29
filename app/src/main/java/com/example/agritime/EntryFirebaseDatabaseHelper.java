@@ -53,13 +53,13 @@ public class EntryFirebaseDatabaseHelper {
         });
     }
 
-    public void addEntry(Entry entry, final DataStatus dadaStatus) {
+    public void addEntry(Entry entry, final DataStatus dataStatus) {
         String key = mReferenceEntry.push().getKey();
         mReferenceEntry.child(key).setValue(entry)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        dadaStatus.DataIsInserted();
+                        dataStatus.DataIsInserted();
                     }
                 });
     }

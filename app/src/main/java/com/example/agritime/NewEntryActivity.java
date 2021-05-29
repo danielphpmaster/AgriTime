@@ -23,6 +23,7 @@ public class NewEntryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_entry);
+
         mName_editText = (EditText) findViewById(R.id.name_editText);
         mTime_editText = (EditText) findViewById(R.id.hours_editText);
         mEntry_catgories_spinner = (Spinner) findViewById(R.id.category_editText);

@@ -1,7 +1,6 @@
 package com.example.agritime;
 
 public class Entry {
-    private String id;
     private String name;
     private String category;
     private String time;
