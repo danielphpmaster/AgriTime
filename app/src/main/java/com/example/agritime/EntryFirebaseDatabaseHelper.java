@@ -17,10 +17,13 @@ public class EntryFirebaseDatabaseHelper {
     private DatabaseReference mReferenceEntry;
     private List<Entry> entries = new ArrayList<>();
 
-    public interface DataStatus{
+    public interface DataStatus {
         void DataIsLoaded(List<Entry> entries, List<String> keys);
+
         void DataIsInserted();
+
         void DataIsUpdated();
+
         void DataIsDeleted();
     }
 
@@ -35,7 +38,7 @@ public class EntryFirebaseDatabaseHelper {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 entries.clear();
                 List<String> keys = new ArrayList<>();
-                for(DataSnapshot keyNode : dataSnapshot.getChildren()) {
+                for (DataSnapshot keyNode : dataSnapshot.getChildren()) {
                     keys.add(keyNode.getKey());
                     Entry entry = keyNode.getValue(Entry.class);
                     entries.add(entry);
@@ -50,34 +53,34 @@ public class EntryFirebaseDatabaseHelper {
         });
     }
 
-    public void addEntry (Entry entry, final DataStatus dadaStatus){
-        String key =mReferenceEntry.push().getKey();
+    public void addEntry(Entry entry, final DataStatus dadaStatus) {
+        String key = mReferenceEntry.push().getKey();
         mReferenceEntry.child(key).setValue(entry)
-               .addOnSuccessListener(new OnSuccessListener<Void>() {
-                   @Override
-                   public void onSuccess(Void aVoid) {
-                       dadaStatus.DataIsInserted();
-                   }
-               });
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        dadaStatus.DataIsInserted();
+                    }
+                });
     }
 
-    public void updateEntry( String key, Entry entry, final DataStatus dataStatus){
+    public void updateEntry(String key, Entry entry, final DataStatus dataStatus) {
         mReferenceEntry.child(key).setValue(entry)
-        .addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                 dataStatus.DataIsUpdated();
-            }
-        });
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        dataStatus.DataIsUpdated();
+                    }
+                });
     }
 
-    public void deleteEntry(String key, final DataStatus dataStatus){
-            mReferenceEntry.child(key).setValue(null)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            dataStatus.DataIsDeleted();
-                        }
-                    });
+    public void deleteEntry(String key, final DataStatus dataStatus) {
+        mReferenceEntry.child(key).setValue(null)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        dataStatus.DataIsDeleted();
+                    }
+                });
     }
 }
