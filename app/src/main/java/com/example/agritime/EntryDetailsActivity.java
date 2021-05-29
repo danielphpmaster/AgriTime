@@ -41,7 +41,7 @@ public class EntryDetailsActivity extends AppCompatActivity {
         mName_editText.setText(name);
         mtime_editText = (EditText) findViewById(R.id.hours_editText);
         mtime_editText.setText(time);
-        mEntry_categories_spinner = (Spinner) findViewById(R.id.category_editText);
+        mEntry_categories_spinner = (Spinner) findViewById(R.id.category_details_spinner);
         mEntry_categories_spinner.setSelection(getIndex_SpinnerTime(mEntry_categories_spinner, category));
         mUpdate_btn = (Button) findViewById(R.id.update_button);
         mDelete_btn = (Button) findViewById(R.id.delete_button);

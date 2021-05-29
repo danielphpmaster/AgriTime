@@ -31,7 +31,7 @@ public class NewEntryActivity extends AppCompatActivity {
 
         mName_editText = (EditText) findViewById(R.id.name_editText);
         mTime_editText = (EditText) findViewById(R.id.hours_editText);
-        mEntry_categories_spinner = (Spinner) findViewById(R.id.category_editText);
+        mEntry_categories_spinner = (Spinner) findViewById(R.id.category_spinner);
 
         mNewCategory_button = (Button) findViewById(R.id.new_category);
         mUpload_button = (Button) findViewById(R.id.update_button);

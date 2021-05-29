@@ -30,10 +30,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/category_editText" />
+        app:layout_constraintTop_toBottomOf="@+id/category_details_spinner" />
 
     <Spinner
-        android:id="@+id/category_editText"
+        android:id="@+id/category_details_spinner"
         android:layout_width="209dp"
         android:layout_height="47dp"
         android:layout_marginTop="8dp"
