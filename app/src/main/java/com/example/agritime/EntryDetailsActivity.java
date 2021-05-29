@@ -68,7 +68,7 @@ public class EntryDetailsActivity extends AppCompatActivity {
 
                 @Override
                 public void DataIsUpdated() {
-                    Toast.makeText(EntryDetailsActivity.this, "Update succsessful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EntryDetailsActivity.this, "Updated successfully.", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -100,7 +100,7 @@ public class EntryDetailsActivity extends AppCompatActivity {
 
                     @Override
                     public void DataIsDeleted() {
-                        Toast.makeText(EntryDetailsActivity.this, "Delete succsessful", Toast.LENGTH_LONG).show();
+                        Toast.makeText(EntryDetailsActivity.this, "Deleted successfully.", Toast.LENGTH_LONG).show();
                         finish(); return;
                     }
                 });
