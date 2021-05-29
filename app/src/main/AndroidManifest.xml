@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AgriTime">
-        <activity android:name=".EntryDetailsActivity"></activity>
+        <activity android:name=".EntryDetailsActivity"/>
         <activity android:name=".NewEntryActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

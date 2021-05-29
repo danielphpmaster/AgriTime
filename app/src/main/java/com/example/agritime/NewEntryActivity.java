@@ -27,8 +27,8 @@ public class NewEntryActivity extends AppCompatActivity {
         mTime_editText = (EditText) findViewById(R.id.hours_editText);
         mEntry_catgories_spinner = (Spinner) findViewById(R.id.category_editText);
 
-        mUpload_button = (Button)findViewById(R.id.update_button);
-        mBack_button = (Button) findViewById(R.id.back_button);
+        mUpload_button = (Button) findViewById(R.id.update_button);
+        mBack_button = (Button) findViewById(R.id.back_button2);
 
         mUpload_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,12 +41,11 @@ public class NewEntryActivity extends AppCompatActivity {
                     @Override
                     public void DataIsLoaded(List<Entry> entries, List<String> keys) {
 
-
                     }
 
                     @Override
                     public void DataIsInserted() {
-                        Toast.makeText(NewEntryActivity.this,"Added successfully.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(NewEntryActivity.this, "Added successfully.", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -59,11 +58,12 @@ public class NewEntryActivity extends AppCompatActivity {
 
                     }
                 });
+
                 mBack_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        finish(); return;
-
+                        finish();
+                        return;
                     }
                 });
 
