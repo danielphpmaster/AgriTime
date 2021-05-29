@@ -9,9 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AgriTime">
-        <activity android:name=".NewCategoryActivity"></activity>
-        <activity android:name=".EntryDetailsActivity" />
-        <activity android:name=".NewEntryActivity" />
+
+        <activity android:name=".NewCategoryActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".NewEntryActivity"/>
+        </activity>
+
+        <activity android:name=".EntryDetailsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+
+        <activity android:name=".NewEntryActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
