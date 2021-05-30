@@ -47,39 +47,6 @@ public class NewEntryActivity extends AppCompatActivity {
         mUpload_button = (Button) findViewById(R.id.update_button);
         mBack_button = (Button) findViewById(R.id.back_button2);
 
-        /*
-        new CategoryFirebaseDatabaseHelper().readCategories(new CategoryFirebaseDatabaseHelper.DataStatus() {
-            @Override
-            public void DataIsLoaded(List<Category> categories, List<String> keys) {
-                List<String> spinnerList = new ArrayList<>();
-                for (int i = 0; i < categories.size(); i++) {
-                    spinnerList.add(categories.get(i).getName());
-                }
-            }
-
-            @Override
-            public void DataIsInserted() {
-
-            }
-
-            @Override
-            public void DataIsUpdated() {
-
-            }
-
-            @Override
-            public void DataIsDeleted() {
-
-            }
-        });
-        System.out.println(spinnerList.size());
-
-
-        String colors[] = {"Red","Blue","White","Yellow","Black", "Green","Purple","Orange","Grey"};
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, colors);
-        mEntry_categories_spinner.setAdapter(spinnerArrayAdapter);
-        */
-
         readCategories(new Callback() {
             @Override
             public void onCallback(String[] array) {
