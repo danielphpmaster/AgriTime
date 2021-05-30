@@ -90,6 +90,7 @@ public class EntryDetailsActivity extends AppCompatActivity {
                     @Override
                     public void DataIsUpdated() {
                         Toast.makeText(EntryDetailsActivity.this, "Updated successfully.", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
 
                     @Override
